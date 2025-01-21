@@ -13,20 +13,6 @@ import {register} from 'ol/proj/proj4';
 import proj4 from "proj4";
 proj4.defs("EPSG:3405", "+proj=tmerc +lat_0=0 +lon_0=105 +k=1 +x_0=500000 +y_0=0 +datum=WGS84 +units=m +no_defs");
 register(proj4);
-let road = new TileLayer({
-    source: new TileWMS({
-        url: 'http://localhost:8080/geoserver/gis_local/wms', // Đường dẫn tới GeoServer WMS
-        params: {
-            'SERVICE': 'WMS',
-            'VERSION': '1.1.0',
-            'LAYERS': 'gis_local:gis_osm_buildings_a_free_1', // Tên layer
-            'TILED': true,
-            'FORMAT': 'image/png',
-        },
-        // serverType: 'geoserver', // Chỉ định loại server
-        // crossOrigin: 'anonymous', // Cho phép tải tài nguyên qua CORS
-    })
-})
 
 let building = new TileLayer({
     source: new TileWMS({
@@ -44,7 +30,7 @@ let building = new TileLayer({
 })
 
 const map = new Map({
-    layers: [road, building
+    layers: [ building
     ],
     target: 'map',
     view: new View({
